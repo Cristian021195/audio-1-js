@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Audio 1</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script defer src="./js/index.js" type="module"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/index.js" type="module" crossorigin></script>
 </head>
 <body>
     <header>
@@ -38,12 +39,42 @@
             </div>
           </nav>
     </header>
-    <main class="vh-100">
+    <main class="vh-100 container">
         <div class="text-center">
             <h1>JS Audio 1</h1>
         </div>
-        <section>
-            <article></article>
+        <section class="row">
+            <article>
+                <div class="alert alert-danger">
+                    <b>General Audio State:</b><span id="audio-state" class="ms-2">Stoped</span>
+                </div>
+                <fieldset>
+                    <legend>new Audio() <span class="badge rounded-pill bg-primary" id="audio1-state">Stoped</span></legend>
+                    <p>La clase Audio, nos permite usar la API nativa del navegador para reproducir sonidos, tal cual HTML5, le pasamos como constructor 
+                        una cadena de texto que es la ruta al archivo .mp3, .wav, etc.
+                    </p>
+                    <p>Algo a notar, es que si hacemos click constantemente mientras se reproduce, no tiene efectos secundarios, ni se reproduce otra vez
+                        el sonido, salvo que termine.
+                    </p>
+                    <button id="btn1" class="btn btn-primary">PLAY</button>
+                </fieldset>
+                <fieldset>
+                    <legend>new Audio('data:audio/wav;base64') <span class="badge rounded-pill bg-primary" id="audio2-state">Stoped</span></legend>
+                    <p>El Source / Fuente de audio, no necesariamente tiene que ser un recurso ya creado, podemos pasarle instrucciones en codificacion Base64 que la api podra interpretar sin problema alguno
+                        normalmente es recomendable usarlo en sonidos cortos, sino es mucho texto para poner en nuestro codigo.
+                    </p>
+                    <p><b>Dato interesante: </b><i>Cuando abstraemos la reproduccion de audio en una funcion y luego llamamos a esa funcion desde un boton, 
+                        muy rapido, (haciendo muchos clicks consecutivos) los reproduce sin problemas. Por otro lado, si lo hacemos desde el mismo archivo index espera
+                        a que el audio deje de reproducirse.
+                    </i></p>
+                    <p><i>Pensé que era por los listeners que tenian asociados, pero los comente y el comportamiento sigue siendo el mismo, destaco esto porque puede
+                        ser para aplicar en diferentes casos segun la necesidad.
+                    </i></p>
+                    <p><i>Cabe aclarar que lo que sucede, es que al ejecutar la funcion, siempre crea una nueva instancia del audio, es por ello que tenemos este resultado.
+                    </i></p>
+                    <button id="btn2" class="btn btn-primary">PLAY</button> <button id="btn2-1" class="btn btn-primary">PLAY beep() function</button>
+                </fieldset>
+            </article>
         </section>
     </main>
     <footer class="bg-dark text-white p-3 text-center">
